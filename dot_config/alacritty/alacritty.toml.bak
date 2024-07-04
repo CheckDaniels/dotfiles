@@ -1,0 +1,124 @@
+# GENERAL
+[shell]
+program = "/bin/zsh"
+# ENV
+[env]
+TERM = "xterm-256color"
+# WINDOW
+[window]
+#dimensions = { columns = 124, lines = 43}
+#opacity = 0.90
+#startup_mode = "Maximized"
+resize_increments = true
+
+# SCROLLING
+# FONT
+[font]
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+bold_italic = { family = "JetBrainsMono Nerd Font", style = "SemiBold Italic" }
+size = 13
+
+
+# COLORS
+
+# Default colors
+[colors.primary]
+background = "#2E3440"
+foreground = "#D8DEE9"
+
+# Normal colors
+[colors.normal]
+black   = "#3B4252"
+red     = "#BF616A"
+green   = "#A3BE8C"
+yellow  = "#EBCB8B"
+blue    = "#81A1C1"
+magenta = "#B48EAD"
+cyan    = "#88C0D0"
+white   = "#E5E9F0"
+
+# Bright colors
+[colors.bright]
+black   = "#4C566A"
+red     = "#BF616A"
+green   = "#A3BE8C"
+yellow  = "#EBCB8B"
+blue    = "#81A1C1"
+magenta = "#B48EAD"
+cyan    = "#8FBCBB"
+white   = "#ECEFF4"
+
+# Cursor colors
+[colors.cursor]
+text = "#2E3440"
+cursor = "#D8DEE9"
+
+# Selection colors
+[colors.selection]
+text = "#D8DEE9"
+background = "#4C566A"
+
+# # Visual bell color
+# [colors.visual_bell]
+# color = "#BF616A"
+
+# # Indexed colors
+# [colors.indexed]
+# 16 = "#3B4252"
+# 17 = "#5E81AC"
+
+
+
+
+# [colors.primary]
+# # Arc Dark
+# background= '0x2F343F'
+# foreground= '0xD3DAE3'
+#
+# # Gruvbox
+# # foreground = "#ebdbb2"
+# # background = "#282828"
+#
+# [colors.normal]
+# # Arc Dark
+# black=   '0x2F343F'
+# red=     '0xEC7875'
+# green=   '0x61C766'
+# yellow=  '0xFBC760'
+# blue=    '0x6699CC'
+# magenta= '0xC594C5'
+# cyan=    '0x5FB3B3'
+# white=   '0xD3DAE3'
+#
+# # Gruvbox
+# # black = "#282828"
+# # blue = "#458588"
+# # cyan = "#689D6A"
+# # green = "#98971A"
+# # magenta = "#B16286"
+# # red = "#CC241D"
+# # white = "#A89984"
+# # yellow = "#D79921"
+#
+# [colors.bright]
+# # Arc Dark
+# black=   '0x4F5B66'
+# red=     '0xEC7875'
+# green=   '0x61C766'
+# yellow=  '0xFBC760'
+# blue=    '0x6699CC'
+# magenta= '0xC594C5'
+# cyan=    '0x5FB3B3'
+# white=   '0xD3DAE3'
+#
+# # Gruvbox
+# # black = "#928374"
+# # blue = "#83A598"
+# # cyan = "#8EC07C"
+# # green = "#B8BB26"
+# # magenta = "#D3869B"
+# # red = "#FB4934"
+# # white = "#EBDBB2"
+# # yellow = "#FABD2F"  

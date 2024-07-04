@@ -1,0 +1,128 @@
+/* Waybar CSS for Arc Dark theme and Numix icon theme */
+
+/* General settings */
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    color: #D3DAE3;
+    background: transparent;
+}
+
+/* Bar settings */
+#waybar {
+    background: #2F343F;
+    border-bottom: 2px solid #1C1F26;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+/* Modules styling */
+#waybar .module {
+    padding: 0 10px;
+    border-radius: 4px;
+    margin: 0 5px;
+    background: #3B414E;
+}
+
+#waybar .module:hover {
+    background: #4C505C;
+}
+
+
+/* Clock module */
+#clock {
+    background: #3B414E;
+}
+
+/* Workspace module */
+window#workspaces {
+    background: #3B414E;
+}
+
+window#workspaces button {
+    color: #D3DAE3;
+}
+
+window#workspaces button.focused {
+    background: #5294E2;
+    color: #FFF;
+}
+
+window#workspaces button:hover {
+    background: #4C505C;
+}
+
+/* Network module */
+#network {
+    background: #3B414E;
+}
+
+#network.disconnected {
+    color: #E06C75;
+}
+
+#network.connected {
+    color: #98C379;
+}
+
+/* Battery module */
+#battery {
+    background: #3B414E;
+}
+
+#battery.critical {
+    color: #E06C75;
+}
+
+#battery.low {
+    color: #E5C07B;
+}
+
+#battery.good {
+    color: #98C379;
+}
+
+
+
+
+/* Tooltip styling */
+.tooltip {
+    background: #2F343F;
+    border: 1px solid #1C1F26;
+    color: #D3DAE3;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+/* Scrollbars */
+scrollbar {
+    background: #2F343F;
+    border-radius: 5px;
+}
+
+scrollbar thumb {
+    background: #4C505C;
+    border-radius: 5px;
+}
+
+/* Notifications */
+#notifications {
+    background: #3B414E;
+    border: 1px solid #1C1F26;
+    border-radius: 4px;
+}
+
+#notifications .notification {
+    background: #2F343F;
+    border-bottom: 1px solid #1C1F26;
+    padding: 5px;
+}
+
+#notifications .notification:hover {
+    background: #4C505C;
+}
+
+#custom-maximized {
+    font-size: 18px;
+    animation-duration: 0.5s;
+    padding: 4px; /* Example padding */
+}

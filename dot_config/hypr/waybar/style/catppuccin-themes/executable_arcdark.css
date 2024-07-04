@@ -1,0 +1,37 @@
+/*
+*
+* Arc Dark Color Palette
+* Created by ChatGPT
+*
+*/
+
+@define-color base   #2f343f;
+@define-color mantle #1b1e23;
+@define-color crust  #121417;
+
+@define-color text     #d3dae3;
+@define-color subtext0 #a6accd;
+@define-color subtext1 #b3bacd;
+
+@define-color surface0 #3c3f45;
+@define-color surface1 #464b50;
+@define-color surface2 #50575d;
+
+@define-color overlay0 #565c63;
+@define-color overlay1 #6c7178;
+@define-color overlay2 #838890;
+
+@define-color blue      #5294e2;
+@define-color lavender  #b3b9d3;
+@define-color sapphire  #6f9fc8;
+@define-color sky       #76a1c1;
+@define-color teal      #66b1a1;
+@define-color green     #8cba71;
+@define-color yellow    #deb94a;
+@define-color peach     #e39b58;
+@define-color maroon    #d16b78;
+@define-color red       #cc6666;
+@define-color mauve     #b48ead;
+@define-color pink      #dca3a3;
+@define-color flamingo  #d7a5a5;
+@define-color rosewater #e5c7c7;
