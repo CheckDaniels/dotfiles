@@ -1,0 +1,7 @@
+api_key:
+  chatgpt:
+    value: CHATGPT_API_KEY # <- Replace with your API Key
+    # file: $HOME/secrets/chatgpt.txt # <- You can also specify the file where to read API Key
+  deepl:
+    value: eafcdbdb-0312-926d-ec10-978cedbc8829:fx # <- Replace with your API Key
+    # file: $HOME/secrets/deepl.txt # <- You can also specify the file where to read API Key

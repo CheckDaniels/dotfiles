@@ -1,0 +1,22 @@
+iDIR="$HOME/.config/hypr/mako/icons"
+
+# toggle microphone status
+toggle_mic() {
+  local micStatus=$(amixer get Capture | grep '\[on\]')
+  if [ -n "$micStatus" ]; then
+      amixer set Capture nocap
+      notify-send -h string:x-canonical-private-synchronous:sys-notify -u low -i "$iDIR/microphone-mute.png" "Microphone Switched OFF"
+  else
+      amixer set Capture cap
+      notify-send -h string:x-canonical-private-synchronous:sys-notify -u low -i "$iDIR/microphone.png" "Microphone Switched ON"
+  fi
+}
+
+if [[ "$1" == "--toggle" ]]; then
+	toggle_mic
+elif [[ "$1" == "--get-icon" ]]; then
+	get_icon
+else
+	toggle_mic
+fi
+

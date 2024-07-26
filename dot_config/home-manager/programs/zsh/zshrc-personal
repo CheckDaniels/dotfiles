@@ -1,0 +1,114 @@
+# My custom zshrc-configuration
+
+# ranger function
+ranger_cd() {
+    local temp_file=$(mktemp)
+    ranger --choosedir="$temp_file" "${@:-$PWD}"
+    if [ -f "$temp_file" ]; then
+        local chosen_dir=$(cat "$temp_file")
+        rm -f "$temp_file"
+        if [ -n "$chosen_dir" ] && [ "$chosen_dir" != "$PWD" ]; then
+            cd "$chosen_dir"
+        fi
+    fi
+}
+
+# EXPORTS
+export NIXPKGS_ALLOW_UNFREE=1
+export BROWSER='brave'
+export GITHUB_USERNAME='CheckDaniels'
+export CLIPBOARD_MANAGER='copyq'
+export DEEPL_AUTH_KEY="eafcdbdb-0312-926d-ec10-978cedbc8829:fx"
+export GRUB_MODULES="
+ normal
+ linux
+ tpm
+ cat
+ part_gpt
+ part_msdos
+ all_video
+ efi_gop
+ efi_uga
+ video_bochs
+ video_cirrus
+ part_gpt
+ cryptodisk
+ luks
+ gcry_rijndael
+ gcry_sha256
+ ext2
+ gfxterm
+ gettext
+ gfxmenu
+ jpeg
+ png
+ gzio
+"
+#export PATH=$PATH:/home/daniel/bin/inst_applic/xdg-desktop-portal-termfilechooser/build/
+
+
+# ALIASES
+alias ranger='ranger_cd'
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias wget="wget -c"
+alias edit-launcher="cinnamon-desktop-editor -m launcher -o ~/.local/share/applications -f"
+#alias cat="bat"
+
+alias movegdrive="rclone move g_drive: /home/daniel/Documents/05_reMarkable_data/"
+alias backup_home="sudo rsync -aAXv --delete --exclude={'/home/daniel/.cache','/home/daniel/.local/share/Trash/*','/home/daniel/VirtualBox VMs'} /home /run/media/daniel/Databackup/hp_linux"
+alias backup_home2="sudo rsync -aAXv --delete --exclude={'/home/daniel/.cache','/home/daniel/.local/share/Trash/*','/home/daniel/VirtualBox VMs'} /home /run/media/daniel/hp_linux"
+alias backup_home3="sudo rsync -aAXv --delete --exclude={'/home/daniel/.cache','/home/daniel/.local/share/Trash/*','/home/daniel/VirtualBox VMs'} /run/media/liveuser/0049c361-2c23-4475-8cf8-9c281a5533cb/home /run/media/daniel/Databackup/hp_linux"
+alias clone_home='sudo rsync -aAXv /run/media/daniel/Databackup/hp_linux/home /home/daniel'
+alias clone_home2='sudo rsync -aAXv /run/media/daniel/hp_linux/home /home/daniel'
+alias recover_home='sudo rsync -aAXv --delete /run/media/daniel/Databackup/hp_linux/home/daniel /home'
+alias recover_home2='sudo rsync -aAXv --delete /run/media/daniel/hp_linux/home/daniel /home'
+
+alias freetube='export NIXPKGS_ALLOW_UNFREE=1 nix-shell -p steam-run --run "steam-run ~/bin/freetube/freetube"'
+alias rebuild-nix='sudo nixos-rebuild switch'
+alias cleanup-nix='sudo nix-collect-garbage --delete-older-than 15d'
+alias rebuild-home='home-manager switch'
+alias rebuild-all='sudo nixos-rebuild switch --flake ~/.config/home-manager/#default'
+alias nv='nvim'
+alias rr='ranger' 
+alias rranger='\sudo ranger'
+alias nano='\nvim'
+alias dnano='\nano'
+alias sudo='sudo '
+alias dranger='\ranger'
+
+# direnv_settings
+#_direnv_hook() {
+#  trap -- '' SIGINT
+#  eval "$("/usr/bin/direnv" export zsh)"
+#  trap - SIGINT
+#}
+#typeset -ag precmd_functions
+#if (( ! ${precmd_functions[(I)_direnv_hook]} )); then
+#  precmd_functions=(_direnv_hook $precmd_functions)
+#fi
+#typeset -ag chpwd_functions
+#if (( ! ${chpwd_functions[(I)_direnv_hook]} )); then
+#  chpwd_functions=(_direnv_hook $chpwd_functions)
+#fi
+
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/config.json)"
+eval "$(atuin init zsh)"
+#eval "$(fzf --zsh)"
+
+# KEYBINDINGS
+new_ranger_pane() {
+    cwd=$(pwd)
+    tmux split-window -t tmux:1 -c "$cwd" '~/.config/ranger/ranger_cd.sh'
+}
+new_alacritty_pane() {
+    cwd=$(pwd)
+    tmux split-window -t tmux:1 -c "$cwd"
+}
+
+zle -N new_ranger_pane
+zle -N new_alacritty_pane
+
+bindkey '^[e' new_ranger_pane # ALT + E
+bindkey -r '^[^M'
+bindkey '^[^M' new_alacritty_pane # ALT + Return

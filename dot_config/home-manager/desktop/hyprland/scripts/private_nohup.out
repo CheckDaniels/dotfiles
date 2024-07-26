@@ -1,0 +1,204 @@
+[2024-07-22 17:37:27.448] [info] Using configuration file /home/daniel/.config/waybar/config
+[2024-07-22 17:37:27.451] [info] Unable to receive desktop appearance: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: No such interface “org.freedesktop.portal.Settings” on object at path /org/freedesktop/portal/desktop
+[2024-07-22 17:37:27.451] [info] Using CSS file /home/daniel/.config/waybar/style.css
+[2024-07-22 17:37:27.462] [warning] Failed to open bar ipc connection: Socket path is empty
+[2024-07-22 17:37:27.466] [info] Hyprland IPC starting
+[2024-07-22 17:37:27.466] [error] Hyprland IPC: Unable to connect?
+[2024-07-22 17:37:27.466] [error] Hyprland IPC: Couldn't connect to /run/user/1000/hypr/918d8340afd652b011b937d29d5eea0be08467f5_1721636350_1957352187/.socket.sock. (3)
+[2024-07-22 17:37:27.467] [warning] module hyprland/workspaces#4: Disabling module "hyprland/workspaces#4", Error parsing JSON: * Line 1, Column 1
+  Syntax error: value, object or array expected.
+
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+[2024-07-22 17:37:27.691] [error] mpris[playerctld]: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.mpris.MediaPlayer2.playerctld was not provided by any .service files
+[2024-07-22 17:37:27.692] [info] Bar configured (width: 1908, height: 38) for output: eDP-1
+
+(waybar:214689): Gtk-CRITICAL **: 17:37:27.732: gtk_widget_set_accel_path: assertion 'GTK_IS_ACCEL_GROUP (accel_group)' failed
+
+(waybar:214689): Gtk-CRITICAL **: 17:37:27.732: gtk_widget_add_accelerator: assertion 'GTK_IS_ACCEL_GROUP (accel_group)' failed
+
+(waybar:214689): Gtk-CRITICAL **: 17:37:27.732: gtk_widget_set_accel_path: assertion 'GTK_IS_ACCEL_GROUP (accel_group)' failed
+
+(waybar:214689): Gtk-CRITICAL **: 17:37:27.732: gtk_widget_add_accelerator: assertion 'GTK_IS_ACCEL_GROUP (accel_group)' failed
+
+(waybar:214689): Gtk-CRITICAL **: 17:37:27.732: gtk_widget_set_accel_path: assertion 'GTK_IS_ACCEL_GROUP (accel_group)' failed
+
+(waybar:214689): Gtk-CRITICAL **: 17:37:27.732: gtk_widget_add_accelerator: assertion 'GTK_IS_ACCEL_GROUP (accel_group)' failed
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+[2024-07-22 17:37:47.514] [error] mpris[playerctld]: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.mpris.MediaPlayer2.playerctld was not provided by any .service files
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+[2024-07-22 17:37:57.542] [error] mpris[playerctld]: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.mpris.MediaPlayer2.playerctld was not provided by any .service files
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+[2024-07-22 17:38:07.516] [error] mpris[playerctld]: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.mpris.MediaPlayer2.playerctld was not provided by any .service files
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+[2024-07-22 17:38:17.519] [error] mpris[playerctld]: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.mpris.MediaPlayer2.playerctld was not provided by any .service files
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+[2024-07-22 17:38:27.524] [error] mpris[playerctld]: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.mpris.MediaPlayer2.playerctld was not provided by any .service files
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+[2024-07-22 17:38:37.553] [error] mpris[playerctld]: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.mpris.MediaPlayer2.playerctld was not provided by any .service files
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+[2024-07-22 17:38:57.514] [error] mpris[playerctld]: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.mpris.MediaPlayer2.playerctld was not provided by any .service files
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+[2024-07-22 17:39:07.512] [error] mpris[playerctld]: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.mpris.MediaPlayer2.playerctld was not provided by any .service files
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+[2024-07-22 17:39:17.514] [error] mpris[playerctld]: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.mpris.MediaPlayer2.playerctld was not provided by any .service files
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+[2024-07-22 17:39:27.524] [error] mpris[playerctld]: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.mpris.MediaPlayer2.playerctld was not provided by any .service files
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+[2024-07-22 17:39:47.515] [error] mpris[playerctld]: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.mpris.MediaPlayer2.playerctld was not provided by any .service files
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+[2024-07-22 17:39:57.517] [error] mpris[playerctld]: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.mpris.MediaPlayer2.playerctld was not provided by any .service files
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+[2024-07-22 17:40:07.524] [error] mpris[playerctld]: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.mpris.MediaPlayer2.playerctld was not provided by any .service files
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory
+cat: /tmp/waybar_fullscreen_status: No such file or directory

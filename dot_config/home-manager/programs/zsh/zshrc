@@ -1,0 +1,21 @@
+autoload -Uz compinit
+compinit
+
+HISTFILE=~/.histfile
+HISTSIZE=5000
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+bindkey -e
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+
+[[ -f ~/.zshrc-personal ]] && . ~/.zshrc-personal
