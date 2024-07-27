@@ -57,11 +57,19 @@
     LC_TIME = "de_CH.UTF-8";
   };
 
-  # Enable the Cinnamon Desktop Environment.
-  #services.xserver.displayManager.lightdm.enable = true;
-  #https://sourceforge.net/projects/novomente-themes/files/SDDM/NetLogin_SDDM_pack.tar.gz
+  # AUTO-CPUFREQ
+  services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.settings = {
+    battery = {
+      governor = "powersave";
+      turbo = "never";
+    };
+    charger = {
+      governor = "performance";
+      turbo = "auto";
+    };
+  };
  
-  # services.displayManager.defaultSession = {};
   services.displayManager.sddm = {
       enable = true;
       theme = "${import ./sddm-theme.nix { inherit pkgs; }}";
@@ -76,17 +84,6 @@
         };
       };
   }; 
-
-  # services.greetd = {
-  #   enable = true;
-  #   settings = rec {
-  #     initial_session = {
-  #       command = "Hyprland";
-  #       user = "your_username";
-  #     };
-  #     default_session = initial_session;
-  #   };
-  # };
 
   # Enable the X11 windowing system.
   services.xserver = {
@@ -145,9 +142,6 @@
   };
 
 
-
-
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.daniel = {
     isNormalUser = true;
@@ -173,10 +167,9 @@
     QT_STYLE_OVERRIDE = lib.mkForce "kvantum";
     EDITOR="nvim";
     VISUAL="nvim";
+    BROWSER="brave";
   };
 
-  # Install firefox.
-  #programs.firefox.enable = true;
   # Install Hyprland.
   programs.hyprland = {
     enable = true;
@@ -245,7 +238,6 @@
     git
     gitkraken
     gittyup
-    zsh-forgit
     # eog
     gnome.gnome-characters
     gnome-pomodoro
@@ -267,21 +259,15 @@
     iotas
     jetbrains.pycharm-community
     jq
-    #?
     kdePackages.qt6ct
-    kdePackages.qt6gtk2
     kdePackages.qtstyleplugin-kvantum
     libnotify
     librewolf
     libreoffice-fresh
     librsvg
     libsForQt5.qt5.qtgraphicaleffects
-    #?
     libsForQt5.qt5ct
-    libsForQt5.qt5.qtwayland
-    libsForQt5.qtstyleplugins
     libsForQt5.qtstyleplugin-kvantum
-    # light
     mailspring
     mako
     marktext
@@ -289,12 +275,12 @@
     minecraft
     morgen
     neofetch
-    # neovim
     nixfmt-classic
     newsflash
-    # nextcloud-client
+    nextcloud-client
     nix-prefetch-git
     nordic
+    nwg-look
     obsidian
     odt2txt
     oh-my-posh
@@ -319,7 +305,7 @@
     ranger
     rhythmbox
     scid
-    # seahorse
+    seahorse
     signal-desktop
     sioyek
     slurp
@@ -343,7 +329,6 @@
     unrar
     unzip
     # variety
-    # vimPlugins.nvchad
     virtualbox
     # virtualbox-guest-iso
     vlc
@@ -357,14 +342,7 @@
     xclip
     xdotool
     xed-editor
-    # xfce.thunar
-    # xfce.thunar-volman
-    # xfce.thunar-archive-plugin 
-    zsh
-    #?
-    zsh-autosuggestions
-    zsh-completions
-    zsh-syntax-highlighting
+    zsh-forgit
   ];
 
 
