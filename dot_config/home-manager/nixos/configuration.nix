@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./stylix.nix
+      ./kanata.nix
       inputs.home-manager.nixosModules.home-manager
     ];
 
@@ -84,6 +85,22 @@
         };
       };
   }; 
+
+  systemd = {
+  user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+  };
 
   # Enable the X11 windowing system.
   services.xserver = {
@@ -195,6 +212,7 @@
     alacritty
     alsa-utils
     arduino
+    arena
     aria2
     atuin
     audacity
@@ -221,6 +239,7 @@
     epub-thumbnailer
     # evince 
     # eyedropper
+    fastfetch
     fd
     ffmpeg
     ffmpegthumbnailer
@@ -259,6 +278,7 @@
     iotas
     jetbrains.pycharm-community
     jq
+    kanata
     kdePackages.qt6ct
     kdePackages.qtstyleplugin-kvantum
     libnotify
@@ -266,6 +286,8 @@
     libreoffice-fresh
     librsvg
     libsForQt5.qt5.qtgraphicaleffects
+    libsForQt5.qt5.qtwayland
+    libsForQt5.qtstyleplugins
     libsForQt5.qt5ct
     libsForQt5.qtstyleplugin-kvantum
     mailspring
@@ -274,7 +296,6 @@
     microsoft-edge
     minecraft
     morgen
-    neofetch
     nixfmt-classic
     newsflash
     nextcloud-client
@@ -291,6 +312,7 @@
     pavucontrol
     pdfarranger
     # picom
+    polkit_gnome
     poppler_utils 
     protonmail-bridge
     pulseaudio
@@ -315,9 +337,10 @@
     sqlite-utils
     stacer
     steam
+    stockfish
     super-productivity
     swaybg
-    teams-for-linux
+    # teams-for-linux
     tk
     tlp
     tmux
@@ -338,10 +361,12 @@
     whatsapp-for-linux
     wineWowPackages.waylandFull
     wl-clipboard
+    wl-clipboard-x11
     wofi
     xclip
     xdotool
     xed-editor
+    xwayland
     zsh-forgit
   ];
 

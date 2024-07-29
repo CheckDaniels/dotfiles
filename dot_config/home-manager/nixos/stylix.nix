@@ -28,6 +28,6 @@
     sizes.desktop = 12;
     sizes.popups = 12;
   };
-  stylix.image = ./wallpapers/ign_dudeOnBuilding3.png;
+  stylix.image = ./wallpapers/ign_sunAndClouds.png;
   stylix.targets.chromium.enable = false;
 }

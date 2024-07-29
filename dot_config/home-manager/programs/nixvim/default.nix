@@ -141,6 +141,23 @@ programs.nixvim = {
     };
   };
 
+  plugins.better-escape.settings = {
+    default_mappings = false;
+    mappings = {   
+      i = {
+        j = {
+          j = "<Esc>";
+          k = "<Esc>";
+        };
+      };
+      v = {
+        j = {
+          k = "<Esc>";
+        };
+      };
+    };
+  };
+
   plugins.cmp = {
     enable = true; # automatic code completion
     autoEnableSources = true;

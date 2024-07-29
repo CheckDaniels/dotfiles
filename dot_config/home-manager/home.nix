@@ -7,6 +7,7 @@
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
+    # (pkgs.callPackage ./programs/stockfish.nix {})
   ];
 
   home.file = {
@@ -32,6 +33,24 @@
     ".config/hypr/scripts".source = desktop/hyprland/scripts;
     ".config/hypr/mako/icons".source = desktop/hyprland/mako-icons;
     ".config/hypr/wallpapers".source = desktop/hyprland/wallpapers;
+    ".config/waybar/theme.css".text = ''
+      @define-color base00 #${config.colorScheme.colors.base00}; 
+      @define-color base01 #${config.colorScheme.colors.base01};
+      @define-color base02 #${config.colorScheme.colors.base02};
+      @define-color base03 #${config.colorScheme.colors.base03};
+      @define-color base04 #${config.colorScheme.colors.base04};
+      @define-color base05 #${config.colorScheme.colors.base05};
+      @define-color base06 #${config.colorScheme.colors.base06};
+      @define-color base07 #${config.colorScheme.colors.base07};
+      @define-color base08 #${config.colorScheme.colors.base08};
+      @define-color base09 #${config.colorScheme.colors.base09};
+      @define-color base0A #${config.colorScheme.colors.base0A};
+      @define-color base0B #${config.colorScheme.colors.base0B};
+      @define-color base0C #${config.colorScheme.colors.base0C};
+      @define-color base0D #${config.colorScheme.colors.base0D};
+      @define-color base0E #${config.colorScheme.colors.base0E};
+      @define-color base0F #${config.colorScheme.colors.base0F};
+    '';
 
     # APPLICATIONS
     ".local/share/applications" = {
@@ -39,7 +58,8 @@
       recursive = true;
     };
     ".local/share/applications/custom-launcher.desktop".source = programs/applications/custom-launcher.desktop;
-    # ".local/share/applications/launcher-editor.desktop".source = programs/applications/launcher-editor.desktop;
+    ".local/share/applications/GitKraken Desktop.desktop".source = "${./programs/applications}/GitKraken Desktop.desktop";
+    ".local/share/applications/scid.desktop".source = "${./programs/applications}/scid.desktop";
     # ".local/share/ghostwriter/themes/Nord.json".source = programs/applications/ghostwriter/Nord.json;
   };
 

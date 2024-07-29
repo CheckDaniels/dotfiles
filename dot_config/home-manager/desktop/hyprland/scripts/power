@@ -7,7 +7,7 @@ if [[ ! $(pidof wofi) ]]; then
 	
 	entries="⇠\tLogout\n⏾\tSuspend\n⭮\tReboot\n⏻\tShutdown"
 
-	selected=$(echo -e $entries|wofi --width 300 --height 270 --dmenu --prompt '' --cache-file /dev/null --style ${STYLE} --color ${COLORS} | awk '{print tolower($2)}')
+	selected=$(echo -e $entries|wofi --width 300 --height 270 --dmenu --prompt '' --cache-file /dev/null --style ${STYLE} --color ${COLORS} --insensitive | awk '{print tolower($2)}')
 
 	case $selected in
 	  logout)

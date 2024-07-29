@@ -24,10 +24,13 @@ wayland.windowManager.hyprland.settings = {
 
   # Configure your Display resolution, offset, scale and Monitors here, use `hyprctl monitors` to get the info.
   monitor= [
-    # HDMI
+    # Default Screen
     "HDMI-A-1,1920x1080@60,0x0,1" 
-    # Screen Resolution
-    ",preferred,auto,1,mirror,eDP-1"
+    # Screen Sharing
+    ",preferred,auto,1"
+    # Mirrored display
+    # ",preferred,auto,1,mirror,DP-1"
+    # ",preferred,auto,1,mirror"
   ];
 
   #workspace=HDMI-A-1,1
@@ -96,8 +99,8 @@ wayland.windowManager.hyprland.settings = {
   # Or execute your favorite apps at launch like this:
 
   exec-once = [ 
+    "polkit-gnome-authentication-agent-1"
     "waybar" 
-    "swaybg -m fill -i ~/.config/hypr/wallpapers/ign_dudeOnBuilding3.png" 
     "ulauncher --hide-window --no-window-shadow" 
     "nm-applet" 
     "udiskie" 
@@ -105,13 +108,12 @@ wayland.windowManager.hyprland.settings = {
     "hypridle"
     "sh $scriptsDir/maximized_win.sh"
     "sleep 2; morgen"
+    "sleep 3; nextcloud --background"
   ];
 
   #sleep 2; mailspring --password-store="gnome-libsecret" --background
-  #sleep 3; nextcloud --background
   #dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
   #systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-  #/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 
 
@@ -268,8 +270,8 @@ wayland.windowManager.hyprland.settings = {
     "$mainMod, X, exec, $power"  
 
 
-    # SYSTEM-MENU
-    "CTRL ALT, M, exec, nwg-menu -cmd-lock 'hyprlock' -cmd-logout 'hyprctl dispatch exit' -va top -wm 'hyprland'"
+    # EXIT HYPRLAND
+    "CTRL ALT, escape, exit"
     # MENU
     ", menu, exec, $menu"
     "SHIFT, menu, exec, $fullmenu"
@@ -291,8 +293,12 @@ wayland.windowManager.hyprland.settings = {
     "$mainMod, minus, exec, alacritty -e sudo auto-cpufreq --force=powersave"
     "$mainMod, numbersign, exec, alacritty -e sudo auto-cpufreq --force=reset"
     "$mainMod, plus, exec, alacritty -e sudo auto-cpufreq --force=performance"
+
+    # IOTAS ( QUICK-NOTES )
+    "$mainMod, N, exec, iotas"
     # QOWNNOTES
-    "$mainMod, N, exec, QOwnNotes #bind = $mainMod, N, exec, marktext ~/Nextcloud/Notes/"
+    # "$mainMod, N, exec, QOwnNotes"
+    # "$mainMod, N, exec, marktext ~/Nextcloud/Notes/"
     # MARKDOWN EDITOR
     "$mainMod, M, exec, marktext"
     # CHATGPT
@@ -502,8 +508,8 @@ wayland.windowManager.hyprland.settings = {
   
   windowrulev2 = [
 
-    # "suppressevent maximize, class:.*" # You'll probably like this.
-
+    "suppressevent maximize, class:.*" # You'll probably like this.
+    
     #~~~~~~~~~~~~~~~~~~~~#
     # CUSTOM WINDOWRULES #
     #~~~~~~~~~~~~~~~~~~~~#
@@ -523,6 +529,7 @@ wayland.windowManager.hyprland.settings = {
 
     # BITWARDEN
     "float, class:^(Bitwarden)$"
+    "pin, class:^(Bitwarden)$"
     "move 1000 50, class:^(Bitwarden)$"
     "size 900 800, class:^(Bitwarden)$"
 
@@ -536,16 +543,12 @@ wayland.windowManager.hyprland.settings = {
     "move 1110 50, class:^(com.github.hluk.copyq)$"
     "size 800 500, class:^(com.github.hluk.copyq)$"
 
-    # EYEDROPPER
-    "float, class:^(com.github.finefindus.eyedropper)$"
-    "pin, class:^(com.github.finefindus.eyedropper)$"
-    "move 1140 50, class:^(com.github.finefindus.eyedropper)$"
-    "size 500 500, class:^(com.github.finefindus.eyedropper)$"
-
     # TTY-CLOCK
     "float, class:^(clock)$, title:^(clock)$"
+    "pin, class:^(clock)$, title:^(clock)$"
     "size 33% 27%, class:^(clock)$, title:^(clock)$"
     "center, class:^(clock)$, title:^(clock)$"
+
 
 
     #~~~~~~~~~~~~~~~~~~~~~~~~#

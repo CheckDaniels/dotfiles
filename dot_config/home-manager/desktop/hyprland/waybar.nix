@@ -2,7 +2,7 @@
 
 {
 programs.waybar.enable = true;
-programs.waybar.style = lib.mkForce ./waybar/style-nord.css;
+programs.waybar.style = lib.mkForce ./waybar/style.css;
 programs.waybar.settings = [{
   layer = "top";
   exclusive = true;
@@ -517,7 +517,7 @@ programs.waybar.settings = [{
         
       
   "custom/menu" = {
-      format = "  ";
+      format = "  ";
       exec = "echo ; echo 󱓟 app launcher";
       interval  = 86400; # once every day
       tooltip = true;
