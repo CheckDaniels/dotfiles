@@ -13,6 +13,14 @@ ranger_cd() {
     fi
 }
 
+
+
+
+upload(){
+  rclone copy "$1" gdrive:
+}
+
+
 # EXPORTS
 export NIXPKGS_ALLOW_UNFREE=1
 export BROWSER='brave'
@@ -46,13 +54,15 @@ export GRUB_MODULES="
 "
 #export PATH=$PATH:/home/daniel/bin/inst_applic/xdg-desktop-portal-termfilechooser/build/
 
-
+#results > div:nth-child(1) > a > div > div.title.svelte-1oi98xa
 # ALIASES
 alias ranger='ranger_cd'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias wget="wget -c"
 alias edit-launcher="cinnamon-desktop-editor -m launcher -o ~/.local/share/applications -f"
+alias xevb="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \"%-3s %s\n\", \$5, \$8 }'"
+alias wevb="stdbuf -oL wev | awk -F '[ ;]+' '/state: 1/ {key=\$9} /sym: / && key { printf \"%-3s %s\n\", key, \$3; key=\"\"}'"
 #alias cat="bat"
 
 alias movegdrive="rclone move g_drive: /home/daniel/Documents/05_reMarkable_data/"
@@ -69,6 +79,7 @@ alias rebuild-nix='sudo nixos-rebuild switch'
 alias cleanup-nix='sudo nix-collect-garbage --delete-older-than 15d'
 alias rebuild-home='home-manager switch'
 alias rebuild-all='sudo nixos-rebuild switch --flake ~/.config/home-manager/#default'
+alias update-all='sudo nix flake update ~/.config/home-manager'
 alias nv='nvim'
 alias rr='ranger' 
 alias rranger='\sudo ranger'
@@ -99,16 +110,16 @@ eval "$(atuin init zsh)"
 # KEYBINDINGS
 new_ranger_pane() {
     cwd=$(pwd)
-    tmux split-window -t tmux:1 -c "$cwd" '~/.config/ranger/ranger_cd.sh'
+    tmux split-window -c "$cwd" '~/.config/ranger/ranger_cd.sh'
 }
-new_alacritty_pane() {
+new_zsh_pane() {
     cwd=$(pwd)
-    tmux split-window -t tmux:1 -c "$cwd"
+    tmux split-window -c "$cwd"
 }
 
 zle -N new_ranger_pane
-zle -N new_alacritty_pane
+zle -N new_zsh_pane
 
 bindkey '^[e' new_ranger_pane # ALT + E
 bindkey -r '^[^M'
-bindkey '^[^M' new_alacritty_pane # ALT + Return
+bindkey '^[^M' new_zsh_pane # ALT + Return

@@ -20,23 +20,25 @@
     }
   ];
   programs.ranger.settings = {
-    preview_images_method = "ueberzug";
+    preview_images_method = "sixel";
     hostname_in_titlebar = false;
     tilde_in_titlebar = true;
     line_numbers = true;
     preview_script = "~/.config/ranger/scope.sh";
     use_preview_script = true;
     preview_images = true;
+    preview_files = false;
   };
   programs.ranger.extraConfig = ''
     setlocal path=~/downloads sort mtime
+    setlocal path=~/.local/share/Trash/files sort mtime
     default_linemode devicons
   '';
   programs.ranger.mappings = {
     "<F1>" = "console touch%space";
     n = "shell nvim -c NvimTreeToggle";
-    N = "shell -f alacritty -T %d -e nvim -c NvimTreeToggle";
-    T = "shell gio trash %f";
+    N = "shell -f $TERMINAL -T %d -e nvim -c NvimTreeToggle";
+    "<C-t>" = "shell gio trash %f";
     dT = "shell gio trash --restore trash:///%f";
     O = "shell -f md.obsidian.Obsidian @@u %f @@";
     "<A-f>" = "fzf_select";
@@ -48,6 +50,7 @@
     "<A-e>" = "tmux_split_into_ranger";
     "<A-CR>" = "tmux_split_into_zsh";
     gm = "cd /run/media";
+    "<C-u>" = "shell rclone copy %s gdrive:\"$(basename $PWD)\"";
   };
   programs.ranger.rifle = [
     # HTML
@@ -139,8 +142,8 @@
       condition =       "ext pdf, has microsoft-edge, X, flag f";
       command = "microsoft-edge -- \"$@\"";
     } {
-      condition =       "ext pdf, has xreader, X, flag f";
-      command = "xreader -- \"$@\"";
+      condition =       "ext pdf, has okular, X, flag f";
+      command = "okular -- \"$@\"";
     } {
       condition =       "ext pdf, has chromium, X, flag f";
       command = "chromium -- \"$@\"";
@@ -211,6 +214,9 @@
 
     # FALLBACK TERMINAL
     {
+      condition =       "mime ^ranger/x-terminal-emulator, has foot";
+      command = "foot -e \"$@\"";
+    } {
       condition =       "mime ^ranger/x-terminal-emulator, has alacritty";
       command = "alacritty -e \"$@\"";
     }
@@ -226,8 +232,14 @@
       condition =       "!mime ^text, !ext xml|json|csv|tex|py|pl|rb|js|sh|php";
       command = "\"$PAGER\" -- \"$@\"";
     } {
-      condition =       "mime application/x-executable";
+      condition =       "mime application/x-executable|text/x-shellscript";
       command = "\"$@\"";
+    } {
+      condition =       "mime application/x-executable|text/x-shellscript";
+      command = "chmod +x \"$1\"";
+    } {
+      condition =       "mime application/x-executable|text/x-shellscript";
+      command = "chmod -x \"$1\"";
     }
 
     # GENERIC FILE OPENERS
@@ -238,16 +250,10 @@
 
     # (UN)SET EXECUTION PERMISSIONS
     {
-      condition =       "ext sh|desktop|appimage";
+      condition =       "ext desktop|appimage";
       command = "chmod +x \"$1\"";
     } {
-      condition =       "ext sh|desktop|appimage ";
-      command = "chmod -x \"$1\"";
-    } {
-      condition =       "match ^(?!.*\\.)[^.]+$, !directory";
-      command = "chmod +x \"$1\"";
-    } {
-      condition =       "match ^(?!.*\\.)[^.]+$, !directory";
+      condition =       "ext desktop|appimage ";
       command = "chmod -x \"$1\"";
     }
   ];

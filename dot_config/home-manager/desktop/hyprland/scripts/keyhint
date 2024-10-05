@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-kitty -e micro ~/.config/hypr/cheatsheet.md

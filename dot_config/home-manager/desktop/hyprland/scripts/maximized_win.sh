@@ -10,10 +10,10 @@ while true; do
     # Get the active window's details
     window_fullscreen=$(hyprctl activewindow -j | jq -r '.fullscreen')
 
-    if [[ $window_fullscreen == "true" ]]; then
-        new_status='{"text": "󰊓", "alt": "fullscreen"}'
+    if [[ $window_fullscreen == "0" ]]; then
+        new_status='{"text": "󰊔", "alt": "fullscreen"}'
     else
-        new_status='{"text": "󰊔", "alt": "not-fullscreen"}'
+        new_status='{"text": "󰊓", "alt": "not-fullscreen"}'
     fi
 
     # Update the status file only if the status has changed

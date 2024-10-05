@@ -28,6 +28,6 @@
     sizes.desktop = 12;
     sizes.popups = 12;
   };
-  stylix.image = ./wallpapers/ign_sunAndClouds.png;
+  stylix.image = ./wallpapers/misty_mountains.jpg;
   stylix.targets.chromium.enable = false;
 }

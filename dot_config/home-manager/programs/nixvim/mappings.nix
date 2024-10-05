@@ -220,7 +220,7 @@ programs.nixvim = {
     {
       key = "<A-e>";
       mode = [ "i" "n" "v" ];
-      action = ''<cmd> lua vim.fn.system("tmux split-window -t tmux:1 -c " .. vim.fn.getcwd() .. " '~/.config/ranger/ranger_cd.sh'") <CR>'';
+      action = ''<cmd> lua vim.fn.system("tmux split-window -c " .. vim.fn.getcwd() .. " '~/.config/ranger/ranger_cd.sh'") <CR>'';
       options = {
         desc = "Open new ranger session in current path";
         noremap = true;
@@ -231,7 +231,7 @@ programs.nixvim = {
     {
       key = "<A-CR>";
       mode = [ "i" "n" "v" ];
-      action = ''<cmd> lua vim.fn.system("tmux split-window -t tmux:1 -c " .. vim.fn.getcwd()) <CR>
+      action = ''<cmd> lua vim.fn.system("tmux split-window -c " .. vim.fn.getcwd()) <CR>
       '';
     options = {
         desc = "Open new zshell session in current path";

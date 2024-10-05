@@ -1,4 +1,4 @@
-{ config, pkgs, home, ...}:
+{ lib, config, pkgs, home, ... }:
 
 {
 wayland.windowManager.hyprland = {
@@ -50,16 +50,18 @@ wayland.windowManager.hyprland.settings = {
  
   "$mainMod" = "SUPER";
   "$scriptsDir" = "$HOME/.config/hypr/scripts";
-  "$menu" = "sh $scriptsDir/menu";
-  "$fullmenu" = "sh $scriptsDir/fullmenu";
-  "$volume" = "sh $scriptsDir/volume";
-  "$microphone" = "sh $scriptsDir/microphone";
-  "$backlight" = "sh $scriptsDir/brightness";
-  "$colorpicker" = "sh $scriptsDir/colorpicker";
-  "$power" = "sh $scriptsDir/power";
-  "$files" = "sh $scriptsDir/tmux-ranger.sh";
-  "$term" = "sh $scriptsDir/tmux-zsh.sh";
-  "$screenshot" = "sh $scriptsDir/screenshot";
+  "$menu" = "$scriptsDir/menu";
+  "$fullmenu" = "$scriptsDir/fullmenu";
+  "$volume" = "$scriptsDir/volume";
+  "$microphone" = "$scriptsDir/microphone";
+  "$backlight" = "$scriptsDir/brightness";
+  "$colorpicker" = "$scriptsDir/colorpicker";
+  "$power" = "$scriptsDir/power";
+  "$files" = "$scriptsDir/tmux-ranger";
+  "$term" = "$scriptsDir/tmux-zsh";
+  "$terminal" = "foot";
+  "$screenshot" = "$scriptsDir/screenshot";
+  "$clipboard" = "$scriptsDir/toggle-copyq";
   "$browser" = "brave";
   "$editor" = "xed";
   "$fileManager" = "nemo";
@@ -70,7 +72,8 @@ wayland.windowManager.hyprland.settings = {
   #############################
 
   env = [
-    "QT_QPA_PLATFORM, wayland"
+    "QT_QPA_PLATFORM, wayland;xcb"
+    "GDK_BACKEND, wayland, x11"
     "NIXOS_OZONE_WL, 1"
     "XDG_CURRENT_DESKTOP, Hyprland"
     "XDG_SESSION_DESKTOP, Hyprland" 
@@ -79,10 +82,16 @@ wayland.windowManager.hyprland.settings = {
     "CLUTTER_BACKEND, wayland"
     "SDL_VIDEODRIVER, wayland"
     "HYPRSHOT_DIR, Pictures/Screenshots"
+    "MOZ_ENABLE_WAYLAND,1"
 
     # Theming
     "QT_QPA_PLATFORMTHEME, qt6ct"
     "GTK_THEME, Nordic"
+    # "HYPRCURSOR_THEME, MyCursor"
+    # "HYPRCURSOR_SIZE, 24"
+    
+    # ydotool
+    # "YDOTOOL_SOCKET, $HOME/.ydotool_socket"
 
     # QT-STUFF
     # env = QT_WAYLAND_DISABLE_WINDOWDECORATION, 1
@@ -99,7 +108,7 @@ wayland.windowManager.hyprland.settings = {
   # Or execute your favorite apps at launch like this:
 
   exec-once = [ 
-    "polkit-gnome-authentication-agent-1"
+    # "lxqt-policykit-agent"
     "waybar" 
     "ulauncher --hide-window --no-window-shadow" 
     "nm-applet" 
@@ -107,8 +116,15 @@ wayland.windowManager.hyprland.settings = {
     "copyq --start-server" 
     "hypridle"
     "sh $scriptsDir/maximized_win.sh"
+    "protonmail-bridge -n"
+    "sleep 4; birdtray"
+    "sleep 4; $scriptsDir/thunderbirdtray"
     "sleep 2; morgen"
     "sleep 3; nextcloud --background"
+    "dbus-update-activation-environment --systemd --all"
+    "systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+    "sh ~/bin/rmfakecloud/dist/rmfakecloud-x64"
+    # "sudo -b ydotoold --socket-path=\"$HOME/.ydotool_socket\" --socket-own=\"$(id -u):$(id -g)\""
   ];
 
   #sleep 2; mailspring --password-store="gnome-libsecret" --background
@@ -128,16 +144,15 @@ wayland.windowManager.hyprland.settings = {
 
 
     #one color
-    # "col.active_border" = "rgba(5294e2aa)";
-    # "col.inactive_border" = "rgba(414868aa)";
+    "col.active_border" = lib.mkForce "rgba(${config.colorScheme.palette.base05}ff)";
+    "col.inactive_border" = lib.mkForce "rgba(${config.colorScheme.palette.base01}ff)";
 
     #two colors - gradient
-    # col.active_border = rgba(7aa2f7aa) rgba(c4a7e7aa) 45deg
-
+    # "col.active_border" = lib.mkForce "rgb(${config.colorScheme.palette.base05}) rgb(${config.colorScheme.palette.base0C}) 90deg";
     # Set to true enable resizing windows by clicking and dragging on borders and gaps
     resize_on_border = false; 
 
-    allow_tearing = false;
+    allow_tearing = true;
 
     layout = "master";
   };
@@ -166,13 +181,13 @@ wayland.windowManager.hyprland.settings = {
   animations = {
     enabled = true;
 
-    bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+    bezier = "myBezier, 0.61, 1, 0.88, 1";
 
     animation = [ 
-      "windows, 1, 7, myBezier" 
-      "windowsOut, 0, 7, default, popin 80%"
-      "fade, 0, 7, default"
-      "border, 0 , 10, default"
+      "windows, 1, 3, myBezier" 
+      "windowsOut, 0, 6, default, popin 80%"
+      "fade, 0, 6, default"
+      "border, 0 , 6, default"
       "workspaces, 1, 6, default"
     ];
   };
@@ -194,12 +209,16 @@ wayland.windowManager.hyprland.settings = {
     disable_hyprland_logo = true;
     disable_splash_rendering = true;
     mouse_move_enables_dpms = true;
-    no_direct_scanout = true; #for fullscreen games
+    # no_direct_scanout = true; #for fullscreen games
     vfr = true;
   };
 
   binds = {
     workspace_back_and_forth = true;
+  };
+
+  render = {
+    direct_scanout = true;
   };
       
 
@@ -263,8 +282,10 @@ wayland.windowManager.hyprland.settings = {
 
     # FREQUENTLY USED KEYBINDINGS
     "$mainMod SHIFT, R, exec, hyprctl reload"
+    "$mainMod SHIFT, F, exec, hyprctl dispatch workspaceopt allfloat"
     "$mainMod SHIFT, Space, togglefloating"
     "$mainMod, F, fullscreen"
+    "$mainMod, Z, fullscreen, 1"
     "$mainMod, Q, killactive"
     "$mainMod, Return, exec, $term"
     "$mainMod, X, exec, $power"  
@@ -272,62 +293,60 @@ wayland.windowManager.hyprland.settings = {
 
     # EXIT HYPRLAND
     "CTRL ALT, escape, exit"
+    # RELOAD WAYBAR
+    "$mainMod CTRL, W, exec, killall waybar; ~/.config/hypr/scripts/statusbar"
     # MENU
     ", menu, exec, $menu"
     "SHIFT, menu, exec, $fullmenu"
-    # INTERNET BROWSER
-    "$mainMod, I, exec, $browser"
-    # FILE EXPLORER
-    "$mainMod, E, exec, $files"
-    # CLOSE WINDOW
-    "CTRL ALT, X, killactive"
-    # FULLSCREEN
-    "$mainMod, Z, fullscreen, 1"
     # HIDE ACTIVE WINDOW
-    "$mainMod,D,exec, ~/bin/hyprland/hide_unhide_window.sh h"
+    "$mainMod,D,exec, $scriptsDir/hide_unhide_window h"
     # SHOW HIDE WINDOW
-    "$mainMod SHIFT,D,exec, ~/bin/hyprland/hide_unhide_window.sh s"
-    # TOGGLE CALENDAR
-    "$mainMod, C, exec, morgen"
-    # AUTO-CPUFREQ
-    "$mainMod, minus, exec, alacritty -e sudo auto-cpufreq --force=powersave"
-    "$mainMod, numbersign, exec, alacritty -e sudo auto-cpufreq --force=reset"
-    "$mainMod, plus, exec, alacritty -e sudo auto-cpufreq --force=performance"
+    "$mainMod SHIFT,D,exec, $scriptsDir/hide_unhide_window s"
+    # TOGGLE CLIPBOARD (copyq)
+    "CTRL ALT, C, exec, $clipboard"
+    
 
-    # IOTAS ( QUICK-NOTES )
+
+    # Mainmod Shortcuts (super_l)
+    
+    # INTERNET BROWSER (brave)
+    "$mainMod, I, exec, $browser"
+    # FILE EXPLORER (nemo)
+    "$mainMod, E, exec, $files"
+    # NEW TMUX-SESSION
+    "$mainMod, T, exec, $terminal -T tmux-session -e $scriptsDir/tmux-new-session"
+    # IOTAS (quick-notes)
     "$mainMod, N, exec, iotas"
-    # QOWNNOTES
-    # "$mainMod, N, exec, QOwnNotes"
-    # "$mainMod, N, exec, marktext ~/Nextcloud/Notes/"
-    # MARKDOWN EDITOR
-    "$mainMod, M, exec, marktext"
+    # CALENDAR (morgen)
+    "$mainMod, C, exec, morgen"
+    # TOGGLE EMAIL-CLIENT (thunderbird)
+    "$mainMod, M, exec, $scriptsDir/toggle-thunderbird"
     # CHATGPT
-    #$mainMod, A, exec,
+    "$mainMod, A, exec, brave --app=https://chatgpt.com/"
+    # OBSDIAN
+    "$mainMod, O, exec, obsidian"
     # REMARKABLE-CLOUD
-    #$mainMod, R, exec,
+    "$mainMod, R, exec, brave --app=https://my.remarkable.com/myfiles"
     # COPILOT
-    "$mainMod, B, exec, microsoft-edge-stable https://www.bing.com/chat"
+    "$mainMod, B, exec, microsoft-edge-stable --app=https://www.bing.com/chat"
     # Newsflash
     "$mainMod SHIFT, N, exec, newsflash"
-    # RELOAD WAYBAR
-    "$mainMod CTRL, W, exec, killall waybar; ~/.config/hypr/scripts/statusbar"
     # PAVUCONTROL
     "$mainMod, V, exec, pavucontrol"
+    # AUTO-CPUFREQ
+    "$mainMod, minus, exec, $terminal -e sudo auto-cpufreq --force=powersave"
+    "$mainMod, numbersign, exec, $terminal -e sudo auto-cpufreq --force=reset"
+    "$mainMod, plus, exec, $terminal -e sudo auto-cpufreq --force=performance" 
 
 
-    # OTHER APPLICATIONS
-    "CTRL ALT, F, exec, nemo"
-    "CTRL ALT, L, exec, librewolf"
-    "CTRL ALT, G, exec, chromium -no-default-browser-check"
-    "CTRL ALT, R, exec, rofi-theme-selector"
-    "CTRL ALT, Return, exec, foot"
+    # OTHER APPLICATIONS (ctrl+alt)
     "CTRL ALT, S, exec, spotify"
-    "CTRL ALT, T, exec, super-productivity"
-    "CTRL ALT, U, exec, pavucontrol"
-    "CTRL ALT, END, exec, alacritty --class btop -T btop -e btop"
+    "CTRL ALT, T, exec, appimage-run ~/.config/appimages/superProductivity-9.0.7.AppImage --no-sandbox"
+    "CTRL ALT, F, exec, $fileManager"
 
 
-    # CHANGE WALLPAPER ( VARIETY )
+
+    # CHANGE WALLPAPER (variety)
     # bind = ALT, n, exec, $scriptsDir/changeWallpaper
     # bind = ALT, p, exec, $scriptsDir/changeWallpaper
     # bind = ALT, left, exec, $scriptsDir/changeWallpaper
@@ -335,17 +354,17 @@ wayland.windowManager.hyprland.settings = {
 
 
 
-    "$mainMod SHIFT, M, exec, hyprctl dispatch splitratio -0.1"
-    "$mainMod, M, exec, hyprctl dispatch splitratio 0.1"
+    # "$mainMod SHIFT, M, exec, hyprctl dispatch splitratio -0.1"
+    # "$mainMod, M, exec, hyprctl dispatch splitratio 0.1"
 
-    "$mainMod SHIFT, Y, exec, alacritty --class clock -T clock -e tty-clock -c -C 7 -r -s -f \"%A, %B, %d\""
+    "$mainMod SHIFT, Y, exec, $terminal -a clock -T clock -e tty-clock -c -C 7 -r -s -f \"%A, %B, %d\""
     "$mainMod SHIFT, I, layoutmsg, addmaster"
     "$mainMod, J, layoutmsg, cyclenext"
     "$mainMod, K, layoutmsg, cycleprev"
 
     "$mainMod CTRL, Return, layoutmsg, swapwithmaster"
-    "$mainMod, Space, exec, sh $scriptsDir/changeLayout"
-    "$mainMod, Y, exec, alacritty --class update -T update -e cava" # f to cycle through foreground colors
+    "$mainMod, Space, exec, $scriptsDir/changeLayout"
+    "$mainMod, Y, exec, $terminal -a update -T update -e cava" # f to cycle through foreground colors
 
     # MAINMOD + FUNCTION KEYS
     "$mainMod, F1, exec, $browser"
@@ -355,7 +374,7 @@ wayland.windowManager.hyprland.settings = {
     "$mainMod, F5, exec, meld"
     "$mainMod, F6, exec, vlc"
     "$mainMod, F7, exec, virtualbox"
-    "$mainMod, F8, exec, $files"
+    "$mainMod, F8, exec, $fileManager"
     "$mainMod, F9, exec, lollypop"
     "$mainMod, F10, exec, spotify"
 
@@ -398,8 +417,8 @@ wayland.windowManager.hyprland.settings = {
     "ALT SHIFT, tab, workspace, r+1"
 
     # COLORPICKER
-    "$mainMod, O, exec, $colorpicker"
-    "$mainMod SHIFT, O, exec, $term --class hyprpicker --hold -e hyprpicker"
+    "$mainMod, P, exec, $colorpicker"
+    "$mainMod SHIFT, P, exec, $term --class hyprpicker --hold -e hyprpicker"
     "$mainMod CTRL, S, exec, $wofi_beats"
 
 
@@ -484,6 +503,10 @@ wayland.windowManager.hyprland.settings = {
  
   ];
 
+  # bindr = [
+  #   "CTRL, Control_L, exec, ydotool key 1:1 1:0"
+  # ];
+
   # Resize
   # binde = [
   #   "$mainMod SHIFT, H, resizeactive,-50 0"
@@ -540,8 +563,15 @@ wayland.windowManager.hyprland.settings = {
     # COPYQ
     "float, class:^(com.github.hluk.copyq)$"
     "pin, class:^(com.github.hluk.copyq)$"
+    "stayfocused, class:^(com.github.hluk.copyq)$"
     "move 1110 50, class:^(com.github.hluk.copyq)$"
     "size 800 500, class:^(com.github.hluk.copyq)$"
+
+    # KRULER
+    "float, class:^(org.kde.kruler)$"
+    "pin, class:^(org.kde.kruler)$"
+    "center, class:^(org.kde.kruler)$"
+    "size, 550 70 class:^(org.kde.kruler)$"
 
     # TTY-CLOCK
     "float, class:^(clock)$, title:^(clock)$"
@@ -555,26 +585,44 @@ wayland.windowManager.hyprland.settings = {
     # CUSTOM WORKSPACE-RULES #
     #~~~~~~~~~~~~~~~~~~~~~~~~#
 
-    # OBSIDIAN
-    "workspaces 2, class:^(obsidian)$"
+    # TERMINAL  
+    "workspace 1, title:^(main-session)$"
     # NEMO
-    "workspaces 3, class:^(nemo)$"
+    "workspaces 1, class:^(nemo)$"
+    # PDF's
+    "workspaces 2, class:^(sioyek)$"
+    "workspaces 2, class:^(org.kde.okular)$"
+    "workspaces 2, class:^(microsoft-edge)$"
+    "workspaces 2, class:^(chromium-browser)$"
+    # BRAVE
+    "workspaces 3, class:^(Brave-browser)$"
+    "workspaces 3, class:^(brave-browser)$"
+    "workspaces 3, class:^(librewolf)$"
+    "workspaces 3, title:^(my.remarkable.com_/myfiles)$"
     # COPILOT
-    "workspaces 4, class:^(Microsoft-edge)$"
+    "workspaces 4, title:^(www.bing.com_/chat)$" 
     # CHATGPT
-    "workspaces 4, class:^(WebApp-ChatGPT9694)$"
+    "workspaces 4, title:^(chatgpt.com_/)$"
+    # OBSIDIAN
+    "workspaces 5, class:^(obsidian)$"
+    "workspaces 5, class:^(org.gnome.World.Iotas)$"
     # SUPERPRODUCTIVITY
-    "workspaces 5, class:^(superProductivity)$"
+    "workspaces 6, class:^(superProductivity)$"
     # MORGEN CALENDAR
-    "workspaces 5, class:^(Morgen)$"
+    "workspaces 6, class:^(Morgen)$"
     # MAILSPRING
-    "workspace 6, class:^(Mailspring)$"
+    "workspace 7, class:^(Mailspring)$"
+    "workspace 7, class:^(thunderbird)$"
+    "workspace 7, class:^(Proton Mail)$"
     # TEAMS
-    "workspace 7, class:^(teams-for-linux)$"
+    "workspace 8, class:^(teams-for-linux)$"
     # LICHESS
-    "workspace 9, class:^(WebApp-lichess6472)$"
+    "workspace 9, title:^(lichess.org_/)$"
     # SCID
     "workspace 9, class:^(Start.tcl)$"
+    "workspace 9, class:^(wlroots)$"
+    # CHESSX
+    "workspace 9, class:^(chessx)$"
 
 
     # windowrulev2 = workspace 4, class:^(Apache Directory Studio)$
@@ -585,6 +633,7 @@ wayland.windowManager.hyprland.settings = {
     # windowrulev2 = workspace 8 silent, class^(Steam)$, title:^(Steam)$
     # windowrulev2 = float,class:^(firefox)$,title:^(Picture-in-Picture)$
   ];
+
 };
 
 }

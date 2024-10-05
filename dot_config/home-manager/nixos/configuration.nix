@@ -29,6 +29,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.generic-extlinux-compatible.configurationLimit = 3;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -86,21 +87,29 @@
       };
   }; 
 
-  systemd = {
-  user.services.polkit-gnome-authentication-agent-1 = {
-    description = "polkit-gnome-authentication-agent-1";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
+
+  # Add PAM module for unlocking the keyring at login
+  # security.pam.services.sddm.enableGnomeKeyring = true;
+
+  # Optionally, set the keyring password to your login password
+  # services.gnome.gnome-keyring.enable = true;
+
+  # enable/install seahorse for managing "passwords and keys"
+  programs.seahorse.enable = true;
+  
+  # knable/install gnupg for git ssh authentication
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
   };
+
+  
+  # security.pam.services.swaylock = {
+  #   text = ''
+  #     auth include login
+  #   '';
+  # };
+
 
   # Enable the X11 windowing system.
   services.xserver = {
@@ -119,6 +128,9 @@
       cinnamon.enable = true;
     };
   };
+
+  # programs.ydotool.enable = true;
+
 
   # Configure console keymap
   console.keyMap = "de";
@@ -163,7 +175,7 @@
   users.users.daniel = {
     isNormalUser = true;
     description = "Daniel Richter";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "ydotool" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -185,6 +197,7 @@
     EDITOR="nvim";
     VISUAL="nvim";
     BROWSER="brave";
+    TERMINAL="foot";
   };
 
   # Install Hyprland.
@@ -195,6 +208,12 @@
   programs.hyprlock.enable = true;
   services.hypridle.enable = true;
 
+  # Install Sway
+  # programs.sway = {
+  #   enable = true;
+  #   wrapperFeatures.gtk = true;
+  # };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowBroken = true;
@@ -204,21 +223,23 @@
     noto-fonts-emoji
     liberation_ttf
     nerdfonts
+    "${import ./fonts/alpha.nix { inherit pkgs; }}"
   ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    alacritty
+    # activitywatch
     alsa-utils
+    alacritty
     arduino
     arena
     aria2
     atuin
     audacity
     auto-cpufreq
-    autoPatchelfHook
     bat
+    birdtray
     bitwarden-desktop
     blanket
     blueman
@@ -237,8 +258,6 @@
     drawio
     dust
     epub-thumbnailer
-    # evince 
-    # eyedropper
     fastfetch
     fd
     ffmpeg
@@ -248,7 +267,7 @@
     findutils
     focuswriter
     foliate
-    fontforge
+    # fontforge
     freetube
     fzf
     gdu
@@ -256,15 +275,11 @@
     gimp
     git
     gitkraken
-    gittyup
-    # eog
-    gnome.gnome-characters
+    gnome-characters
     gnome-pomodoro
     gnome-disk-utility
     gnome-frog
-    gnome-keyring
     gnome-terminal
-    # gnome-text-editor
     gparted
     grim
     gtk2
@@ -272,6 +287,7 @@
     highlight
     home-manager
     hunspell
+    hunspellDicts.de_CH
     hyprshot
     imagemagick
     inkscape
@@ -279,26 +295,30 @@
     jetbrains.pycharm-community
     jq
     kanata
+    kbd
     kdePackages.qt6ct
     kdePackages.qtstyleplugin-kvantum
     libnotify
     librewolf
     libreoffice-fresh
     librsvg
+    libsForQt5.kruler
+    libsForQt5.okular
     libsForQt5.qt5.qtgraphicaleffects
     libsForQt5.qt5.qtwayland
     libsForQt5.qtstyleplugins
     libsForQt5.qt5ct
     libsForQt5.qtstyleplugin-kvantum
-    mailspring
+    libsixel
+    lxqt.lxqt-policykit
     mako
     marktext
     microsoft-edge
     minecraft
     morgen
-    nixfmt-classic
     newsflash
     nextcloud-client
+    nixfmt-classic
     nix-prefetch-git
     nordic
     nwg-look
@@ -311,23 +331,23 @@
     papirus-nord
     pavucontrol
     pdfarranger
-    # picom
     polkit_gnome
     poppler_utils 
     protonmail-bridge
+    protonmail-desktop
+    protonvpn-gui
     pulseaudio
-    # python3
     python312
     python312Packages.chardet
     python312Packages.docx2txt
     python312Packages.pdf2image
     python312Packages.python-bidi
+    python312Packages.tkinter
     qalculate-gtk
-    # qownnotes
     ranger
+    rclone
     rhythmbox
     scid
-    seahorse
     signal-desktop
     sioyek
     slurp
@@ -336,7 +356,6 @@
     sqlitebrowser
     sqlite-utils
     stacer
-    steam
     stockfish
     super-productivity
     swaybg
@@ -347,49 +366,75 @@
     tty-clock
     ueberzugpp
     uget
-    # uget-integrator
+    # uget-integrator needs to be packaged manually with fetchFromGitHub
     ulauncher
     unrar
     unzip
-    # variety
     virtualbox
     # virtualbox-guest-iso
     vlc
     w3m
     waybar
+    wev
     wget
     whatsapp-for-linux
     wineWowPackages.waylandFull
     wl-clipboard
     wl-clipboard-x11
     wofi
+    xcape
     xclip
     xdotool
     xed-editor
+    xorg.setxkbmap
+    xorg.xev
+    xorg.xmodmap
+    xorg.xset
+    # xreader
     xwayland
-    zsh-forgit
+    zsh-forgit 
+    
+    # "${import ./pkgs/super-productivity.nix { inherit pkgs; }}"
+    
   ];
+  
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
 
+  # installs thunderbird
+  programs.thunderbird.enable = true;
+  # enables/installs appimage-run
+  programs.appimage.enable = true;
 
+  # services.arbtt.enable = true;
+  
   # enables flatpak
   services.flatpak.enable = true; 
-
-  xdg = {
-    autostart.enable = true;
-    portal.enable = true;
-    portal.extraPortals = [ 
-      pkgs.xdg-desktop-portal
-      # pkgs.xdg-desktop-portal-gtk
-    ];
+  systemd.services.flatpak-repo = {
+    path = [ pkgs.flatpak ];
+    script = ''
+      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    '';
+    #  other applications to install
   };
+
+
+  # xdg = {
+  #   autostart.enable = true;
+  #   portal.enable = true;
+  #   portal.extraPortals = [ 
+  #     pkgs.xdg-desktop-portal
+  #     # pkgs.xdg-desktop-portal-gtk
+  #   ];
+  # };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
   # List services that you want to enable:
 
@@ -400,7 +445,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -409,5 +454,8 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
+  # system.autoUpgrade = {
+  #   enable = true;
+  #   allowReboot = true;
+  # };  
 }

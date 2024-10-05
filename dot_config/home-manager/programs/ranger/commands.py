@@ -233,7 +233,7 @@ class tmux_split_into_ranger(Command):
     """
     def execute(self):
         current_dir = self.fm.thisdir.path
-        tmux_command = f"tmux split-window -t tmux:1 -c {current_dir} '~/.config/ranger/ranger_cd.sh'"
+        tmux_command = f"tmux split-window -c {current_dir} '~/.config/ranger/ranger_cd.sh'"
         os.system(tmux_command)
 
 class tmux_split_into_zsh(Command):
@@ -243,7 +243,7 @@ class tmux_split_into_zsh(Command):
     """
     def execute(self):
         current_dir = self.fm.thisdir.path
-        tmux_command = f"tmux split-window -t tmux:1 -c {current_dir}"
+        tmux_command = f"tmux split-window -c {current_dir}"
         os.system(tmux_command)
 
 

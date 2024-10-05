@@ -5,7 +5,7 @@
   dconf.settings = {
     # general
     "org/cinnamon" = {
-      favorite-apps = [ "cinnamon-settings.desktop" "Alacritty.desktop" "brave-browser.desktop" "nemo.desktop" ];
+      favorite-apps = [ "cinnamon-settings.desktop" "foot.desktop" "brave-browser.desktop" "nemo.desktop" ];
     };
   
     # theme-settings
@@ -39,7 +39,7 @@
 
     # defaul applications
     "org/cinnamon/desktop/applications/terminal" = {
-      exec = "alacritty";
+      exec = "foot";
     };
     "org/cinnamon/desktop/applications/calculator" = {
       exec = "qalculate-gtk";

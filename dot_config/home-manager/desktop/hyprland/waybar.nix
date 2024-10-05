@@ -75,12 +75,13 @@ programs.waybar.settings = [{
     return-type = "json";
     tooltip = false;
     format = "{}";
+    on-click = "hyprctl dispatch fullscreen 1";
   };
 
   "custom/power" = {
     format = "⏻ ";
-    on-click = "sh ~/.config/hypr/scripts/power";
-    on-click-right = "sh ~/.config/hypr/scripts/power";
+    on-click = "~/.config/hypr/scripts/power";
+    on-click-right = "~/.config/hypr/scripts/power";
     tooltip = false;
   };
 
@@ -176,14 +177,14 @@ programs.waybar.settings = [{
       all-outputs = true;
       sort-by-number = true;
       format-icons = {
-        "1" = "";
-        "2" = "";
-        "3" = "";
+        "1" = "";
+        "2" = "";
+        "3" = "";
         "4" = "";
-        "5" = "󰸗";
-        "6" = "󰇮";
-        "7" = "󰊻";
-        "8" = "";
+        "5" = "";
+        "6" = "󰸗";
+        "7" = "󰇮";
+        "8" = "";
         "9" = "";
         "10" = 10;
         focused = "";
@@ -521,8 +522,8 @@ programs.waybar.settings = [{
       exec = "echo ; echo 󱓟 app launcher";
       interval  = 86400; # once every day
       tooltip = true;
-      on-click = "sh ~/.config/hypr/scripts/menu";
-      on-click-right = "sh ~/.config/hypr/scripts/fullmenu";
+      on-click = "~/.config/hypr/scripts/menu";
+      on-click-right = "~/.config/hypr/scripts/fullmenu";
       # on-click = "nwg-menu -cmd-lock 'hyprlock' -cmd-logout 'hyprctl dispatch exit' -va top -wm 'hyprland'";
   };
 
@@ -675,7 +676,7 @@ programs.waybar.settings = [{
       format-critical = "{icon}\n{temperatureC}°C";
       format = " {icon}";
       format-icons = ["󰈸"];
-      on-click-right = "kitty --title nvtop sh -c 'nvtop'";
+      on-click-right = "$TERMINAL --title nvtop sh -c 'nvtop'";
   };
     
   "custom/power_vertical" = {

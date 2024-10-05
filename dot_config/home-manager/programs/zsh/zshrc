@@ -17,5 +17,6 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+bindkey '^D' backward-delete-char # ALT + N
 
 [[ -f ~/.zshrc-personal ]] && . ~/.zshrc-personal

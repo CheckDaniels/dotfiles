@@ -13,7 +13,7 @@ Name=Google-translate
 Comment=Google Translate TUI
 
 # The executable of the application, possibly with arguments.
-Exec=alacritty -e gtt
+Exec=foot -e gtt
 
 # The name of the icon that will be used to display this entry
 Icon=google-translate

@@ -91,7 +91,7 @@ programs.nixvim = {
     # sleuth.enable = true; # in case there are issues with the shiftwidth
     spider.enable = true; # faster w,e,b movement (for words)
     startify.enable = true; # information when opening neovim
-    surround.enable = true; # add [] "" '' ... to text section
+    vim-surround.enable = true; # add [] "" '' ... to text section
     tagbar.enable = true; # see functions, classes, etc.
     telescope.enable = true;
     tmux-navigator.enable = true;
@@ -106,6 +106,7 @@ programs.nixvim = {
     undotree.enable = true;
     vim-css-color.enable = true;
     # wakatime.enable = true; # tracking programming activity
+    web-devicons.enable = true;
     which-key.enable = true;
     zen-mode.enable = true;
   };
@@ -114,7 +115,7 @@ programs.nixvim = {
     servers = {
 
       # javascript / typescript
-      tsserver.enable = true;
+      ts-ls.enable = true;
 
       # lua
       lua-ls.enable = true;
@@ -149,12 +150,11 @@ programs.nixvim = {
           j = "<Esc>";
           k = "<Esc>";
         };
-      };
-      v = {
-        j = {
+        k = {
+          j = "<Esc>";
           k = "<Esc>";
         };
-      };
+      }; 
     };
   };
 
