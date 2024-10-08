@@ -88,11 +88,13 @@
   }; 
 
 
+
+
   # Add PAM module for unlocking the keyring at login
   # security.pam.services.sddm.enableGnomeKeyring = true;
 
   # Optionally, set the keyring password to your login password
-  # services.gnome.gnome-keyring.enable = true;
+  services.gnome.gnome-keyring.enable = true;
 
   # enable/install seahorse for managing "passwords and keys"
   programs.seahorse.enable = true;
@@ -104,11 +106,12 @@
   };
 
   
-  # security.pam.services.swaylock = {
-  #   text = ''
-  #     auth include login
-  #   '';
-  # };
+  security.polkit.enable = true;
+  security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
+  };
 
 
   # Enable the X11 windowing system.
@@ -120,12 +123,13 @@
       custom = {
 	description = "German (Custom)";	
 	languages = [ "ger" ];
-	symbolsFile = /etc/nixos/keyboard-layout/custom_de;
+	symbolsFile = keyboard-layout/custom_de;
       };
     };
 
     desktopManager = {
-      cinnamon.enable = true;
+      lxqt.enable = true;
+     # cinnamon.enable = true;
     };
   };
 
@@ -175,7 +179,7 @@
   users.users.daniel = {
     isNormalUser = true;
     description = "Daniel Richter";
-    extraGroups = [ "networkmanager" "wheel" "ydotool" ];
+    extraGroups = [ "networkmanager" "wheel" ]; #ydotool
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -231,7 +235,6 @@
   environment.systemPackages = with pkgs; [
     # activitywatch
     alsa-utils
-    alacritty
     arduino
     arena
     aria2
@@ -275,11 +278,12 @@
     gimp
     git
     gitkraken
+    glib # for gio trash
     gnome-characters
+    gnome-clocks
     gnome-pomodoro
     gnome-disk-utility
     gnome-frog
-    gnome-terminal
     gparted
     grim
     gtk2
@@ -291,7 +295,7 @@
     hyprshot
     imagemagick
     inkscape
-    iotas
+    # iotas
     jetbrains.pycharm-community
     jq
     kanata
@@ -314,8 +318,9 @@
     mako
     marktext
     microsoft-edge
-    minecraft
     morgen
+    nemo
+    networkmanagerapplet
     newsflash
     nextcloud-client
     nixfmt-classic
@@ -333,6 +338,7 @@
     pdfarranger
     polkit_gnome
     poppler_utils 
+    prismlauncher
     protonmail-bridge
     protonmail-desktop
     protonvpn-gui
@@ -344,6 +350,7 @@
     python312Packages.python-bidi
     python312Packages.tkinter
     qalculate-gtk
+    qownnotes
     ranger
     rclone
     rhythmbox
@@ -377,7 +384,6 @@
     waybar
     wev
     wget
-    whatsapp-for-linux
     wineWowPackages.waylandFull
     wl-clipboard
     wl-clipboard-x11
@@ -390,12 +396,8 @@
     xorg.xev
     xorg.xmodmap
     xorg.xset
-    # xreader
     xwayland
-    zsh-forgit 
-    
-    # "${import ./pkgs/super-productivity.nix { inherit pkgs; }}"
-    
+    zsh-forgit  
   ];
   
   programs.steam = {
@@ -423,14 +425,15 @@
   };
 
 
-  # xdg = {
-  #   autostart.enable = true;
-  #   portal.enable = true;
-  #   portal.extraPortals = [ 
-  #     pkgs.xdg-desktop-portal
-  #     # pkgs.xdg-desktop-portal-gtk
-  #   ];
-  # };
+  xdg = {
+    autostart.enable = true;
+    portal.enable = true;
+    portal.extraPortals = [ 
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal
+    ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

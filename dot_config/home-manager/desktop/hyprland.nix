@@ -94,8 +94,8 @@ wayland.windowManager.hyprland.settings = {
     # "YDOTOOL_SOCKET, $HOME/.ydotool_socket"
 
     # QT-STUFF
-    # env = QT_WAYLAND_DISABLE_WINDOWDECORATION, 1
-    # env = QT_AUTO_SCREEN_SCALE_FACTOR, 1
+    "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
+    # "QT_AUTO_SCREEN_SCALE_FACTOR, 1"
 
   ];
 
@@ -108,7 +108,7 @@ wayland.windowManager.hyprland.settings = {
   # Or execute your favorite apps at launch like this:
 
   exec-once = [ 
-    # "lxqt-policykit-agent"
+    "lxqt-policykit-agent"
     "waybar" 
     "ulauncher --hide-window --no-window-shadow" 
     "nm-applet" 
@@ -123,11 +123,10 @@ wayland.windowManager.hyprland.settings = {
     "sleep 3; nextcloud --background"
     "dbus-update-activation-environment --systemd --all"
     "systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-    "sh ~/bin/rmfakecloud/dist/rmfakecloud-x64"
+    # "sh ~/bin/rmfakecloud/dist/rmfakecloud-x64"
     # "sudo -b ydotoold --socket-path=\"$HOME/.ydotool_socket\" --socket-own=\"$(id -u):$(id -g)\""
   ];
 
-  #sleep 2; mailspring --password-store="gnome-libsecret" --background
   #dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
   #systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
@@ -209,8 +208,8 @@ wayland.windowManager.hyprland.settings = {
     disable_hyprland_logo = true;
     disable_splash_rendering = true;
     mouse_move_enables_dpms = true;
-    # no_direct_scanout = true; #for fullscreen games
     vfr = true;
+    vrr = 2;
   };
 
   binds = {
@@ -275,7 +274,6 @@ wayland.windowManager.hyprland.settings = {
     # TOGGLE SUPERPRODUCTIVITY
     "ALT, S, exec, xdotool key \"alt+s\""
 
-
     #~~~~~~~~~~~~~~~~~~~~#
     # CUSTOM KEYBINDINGS #
     #~~~~~~~~~~~~~~~~~~~~#
@@ -316,7 +314,7 @@ wayland.windowManager.hyprland.settings = {
     # NEW TMUX-SESSION
     "$mainMod, T, exec, $terminal -T tmux-session -e $scriptsDir/tmux-new-session"
     # IOTAS (quick-notes)
-    "$mainMod, N, exec, iotas"
+    "$mainMod, N, exec, qownnotes"
     # CALENDAR (morgen)
     "$mainMod, C, exec, morgen"
     # TOGGLE EMAIL-CLIENT (thunderbird)
@@ -532,7 +530,7 @@ wayland.windowManager.hyprland.settings = {
   windowrulev2 = [
 
     "suppressevent maximize, class:.*" # You'll probably like this.
-    
+ 
     #~~~~~~~~~~~~~~~~~~~~#
     # CUSTOM WINDOWRULES #
     #~~~~~~~~~~~~~~~~~~~~#
@@ -580,7 +578,6 @@ wayland.windowManager.hyprland.settings = {
     "center, class:^(clock)$, title:^(clock)$"
 
 
-
     #~~~~~~~~~~~~~~~~~~~~~~~~#
     # CUSTOM WORKSPACE-RULES #
     #~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -606,6 +603,7 @@ wayland.windowManager.hyprland.settings = {
     # OBSIDIAN
     "workspaces 5, class:^(obsidian)$"
     "workspaces 5, class:^(org.gnome.World.Iotas)$"
+    "workspaces 5, class:^(PBE.QOwnNotes)$"
     # SUPERPRODUCTIVITY
     "workspaces 6, class:^(superProductivity)$"
     # MORGEN CALENDAR
@@ -623,6 +621,8 @@ wayland.windowManager.hyprland.settings = {
     "workspace 9, class:^(wlroots)$"
     # CHESSX
     "workspace 9, class:^(chessx)$"
+    # MINECRAFT
+    "workspace 9, class:^(Minecraft)"
 
 
     # windowrulev2 = workspace 4, class:^(Apache Directory Studio)$
@@ -635,5 +635,11 @@ wayland.windowManager.hyprland.settings = {
   ];
 
 };
+wayland.windowManager.hyprland.extraConfig = ''
+  bind = $mainMod SHIFT, G, submap, clean
+  submap = clean
+  bind = $mainMod SHIFT, G, submap, reset
+  submap = reset
+'';
 
 }

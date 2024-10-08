@@ -51,6 +51,7 @@
     "<A-CR>" = "tmux_split_into_zsh";
     gm = "cd /run/media";
     "<C-u>" = "shell rclone copy %s gdrive:\"$(basename $PWD)\"";
+    "<CR>" = "open_with 1";
   };
   programs.ranger.rifle = [
     # HTML
@@ -139,11 +140,11 @@
       condition =       "ext pdf, has sioyek, X, flag f";
       command = "sioyek --new-window \"$@\"";
     } {
-      condition =       "ext pdf, has microsoft-edge, X, flag f";
-      command = "microsoft-edge -- \"$@\"";
-    } {
       condition =       "ext pdf, has okular, X, flag f";
       command = "okular -- \"$@\"";
+    } {
+      condition =       "ext pdf, has microsoft-edge, X, flag f";
+      command = "microsoft-edge -- \"$@\"";
     } {
       condition =       "ext pdf, has chromium, X, flag f";
       command = "chromium -- \"$@\"";

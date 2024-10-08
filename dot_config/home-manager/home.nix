@@ -80,9 +80,9 @@
     ".local/share/applications/brave-Brilliant.desktop".source = ./programs/applications/brave-Brilliant.desktop;
     ".local/share/applications/brave-ChatGPT.desktop".source = ./programs/applications/brave-ChatGPT.desktop;
     ".local/share/applications/brave-lichess.desktop".source = ./programs/applications/brave-lichess.desktop;
-    ".local/share/applications/brave-Nord.desktop".source = ./programs/applications/brave-Nord.desktop;
     ".local/share/applications/brave-reMarkable.desktop".source = ./programs/applications/brave-reMarkable.desktop;
     ".local/share/applications/msedge-copilot.desktop".source = ./programs/applications/msedge-copilot.desktop;
+    ".local/share/applications/brave-WhatsApp.desktop".source = ./programs/applications/brave-WhatsApp.desktop;
     
     # ".local/share/applications/GitKraken Desktop.desktop".source = "${./programs/applications}/GitKraken Desktop.desktop";
     # ".local/share/applications/chessx.desktop".source = ./programs/applications/chessx.desktop;
